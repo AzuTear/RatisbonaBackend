@@ -1,0 +1,6 @@
+@RatisbonaBackend_HostAddress = http://localhost:5046
+
+GET {{RatisbonaBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
