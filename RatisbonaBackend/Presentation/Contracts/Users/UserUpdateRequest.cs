@@ -1,12 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace RatisbonaBackend.Business.Entities;
+namespace RatisbonaBackend.Presentation.Contracts.Users;
 
-public class User
+public class UserUpdateRequest
 {
-    [Key]
-    public Guid Id { get; set; }
-
     [Required]
     [StringLength(100)]
     public string Firstname { get; set; } = null!;
@@ -20,14 +17,7 @@ public class User
     [StringLength(255)]
     public string Email { get; set; } = null!;
 
-    [Required]
     [MinLength(8)]
     [StringLength(200)]
-    public string PasswordHash { get; set; } = null!;
-
-    [Required]
-    public DateTimeOffset CreatedAt { get; set; }
-
-    public DateTimeOffset? UpdatedAt { get; set; }
-    public DateTimeOffset? LastLoginAt { get; set; }
+    public string? PasswordHash { get; set; }
 }

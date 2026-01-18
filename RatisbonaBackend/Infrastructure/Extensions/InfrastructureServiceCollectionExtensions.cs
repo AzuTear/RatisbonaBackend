@@ -1,4 +1,5 @@
-﻿using RatisbonaBackend.Business.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
+using RatisbonaBackend.Business.Interfaces.Repositories;
 using RatisbonaBackend.Infrastructure.Persistence;
 using RatisbonaBackend.Infrastructure.Persistence.Repositories;
 
@@ -8,9 +9,14 @@ public static class InfrastructureServiceCollectionExtensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        AddDbContext<RatisbonaDbContext>(UseNpgsql);
+        services.AddDbContext<RatisbonaDbContext>(options =>
+        {
+            options.UseNpgsql(configuration.GetConnectionString("Default"));
+        });
+
         services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }
 }
+
